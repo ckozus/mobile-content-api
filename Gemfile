@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'syslog-logger'
 
-gem 'active_model_serializers', '= 0.10.5'
+gem 'active_model_serializers', git: 'https://github.com/dsgoers/active_model_serializers.git', branch: '0-10-stable'
 gem 'aws-sdk'
 gem 'aws-sdk-rails'
 gem 'ddtrace'

@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/dsgoers/active_model_serializers.git
+  revision: bad70ca781f9e96ddef21c171f0414187471f60c
+  branch: 0-10-stable
+  specs:
+    active_model_serializers (0.10.6)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
+
+GIT
   remote: https://github.com/krim/raddocs.git
   revision: bbf2dc69f479e27520fe609a450e3e3a7eab33f6
   branch: rails_5_support
@@ -34,11 +45,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_model_serializers (0.10.5)
-      actionpack (>= 4.1, < 6)
-      activemodel (>= 4.1, < 6)
-      case_transform (>= 0.2)
-      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
     activejob (5.0.3)
       activesupport (= 5.0.3)
       globalid (>= 0.3.6)
@@ -279,7 +285,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (= 0.10.5)
+  active_model_serializers!
   aws-sdk
   aws-sdk-rails
   byebug
