@@ -10,11 +10,11 @@ class Translation < ActiveRecord::Base
   validates :version, presence: true, uniqueness: { scope: [:resource, :language] }
   validates :resource, presence: true
   validates :language, presence: true
-  validates :is_published, inclusion: { in: [true, false] }
+  enum status: { draft: 0, publishing: 1, published: 2 }
   validates_with DraftCreationValidator, on: :create
   validates_with UsesOneskyValidator
 
-  before_destroy :prevent_destroy_published, if: :is_published
+  before_destroy :prevent_destroy_published, unless: :draft?
   before_update :push_published_to_s3
   before_validation :set_defaults, on: :create
 
@@ -95,7 +95,7 @@ class Translation < ActiveRecord::Base
   end
 
   def push_published_to_s3
-    return unless is_published
+    return if draft?
 
     name_desc_onesky if resource.uses_onesky?
 
@@ -128,6 +128,6 @@ class Translation < ActiveRecord::Base
 
   def set_defaults
     self.version ||= 1
-    self.is_published ||= false
+    self.status ||= :draft
   end
 end

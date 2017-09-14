@@ -100,19 +100,19 @@ german = Language.find_or_create_by!(name: 'German', code: 'de')
 Language.find_or_create_by!(name: 'Slovak', code: 'sk')
 chinese = Language.find_or_create_by!(name: 'Chinese', code: 'es')
 
-Translation.find_or_create_by!(resource: kgp, language: english, version: 1, is_published: true)
-Translation.find_or_create_by!(resource: kgp, language: german, version: 1, is_published: true)
+Translation.find_or_create_by!(resource: kgp, language: english, version: 1, status: 2)
+Translation.find_or_create_by!(resource: kgp, language: german, version: 1, status: 2)
 german_kgp = Translation.find_or_create_by!(resource: kgp, language: german, version: 2)
 
 CustomPage.find_or_create_by!(language: german, page: page_13, structure: page_13_custom_structure)
 
-Translation.find_or_create_by!(resource: satisfied, language: english, version: 1, is_published: true)
-Translation.find_or_create_by!(resource: satisfied, language: english, version: 2, is_published: true)
+Translation.find_or_create_by!(resource: satisfied, language: english, version: 1, status: 2)
+Translation.find_or_create_by!(resource: satisfied, language: english, version: 2, status: 2)
 Translation.find_or_create_by!(resource: satisfied, language: english, version: 3)
-Translation.find_or_create_by!(resource: satisfied, language: german, version: 1, is_published: true)
-Translation.find_or_create_by!(resource: satisfied, language: german, version: 2, is_published: true)
+Translation.find_or_create_by!(resource: satisfied, language: german, version: 1, status: 2)
+Translation.find_or_create_by!(resource: satisfied, language: german, version: 2, status: 2)
 
-Translation.find_or_create_by!(resource: kgp, language: chinese, version: 1, is_published: true)
+Translation.find_or_create_by!(resource: kgp, language: chinese, version: 1, status: 2)
 
 TranslatedPage.find_or_create_by!(value: is_there_god_structure, resource: every_student, language: german)
 TranslatedPage.find_or_create_by!(value: beyond_blind_faith_structure, resource: every_student, language: german)
