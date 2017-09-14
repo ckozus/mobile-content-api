@@ -35,7 +35,7 @@ class Resource < ActiveRecord::Base
   end
 
   def latest_translations
-    latest(true)
+    latest(2)
   end
 
   def latest_drafts_translations
@@ -51,8 +51,8 @@ class Resource < ActiveRecord::Base
   private
 
   # returns the Translation with the highest version for each Language and this Resource
-  def latest(is_published = [true, false])
-    Translation.joins("inner join (#{latest_versions(is_published).to_sql}) as max_table
+  def latest(status = [0, 1, 2])
+    Translation.joins("inner join (#{latest_versions(status).to_sql}) as max_table
                        on translations.version = max_table.max_version
                        and translations.language_id = max_table.language_id
                        and translations.resource_id = max_table.resource_id")
@@ -60,9 +60,9 @@ class Resource < ActiveRecord::Base
   end
 
   # returns the highest version for each Language and this Resource
-  def latest_versions(is_published)
+  def latest_versions(status)
     Translation.select(:language_id, :resource_id, 'max(version) as max_version')
-               .where(resource_id: id, is_published: is_published)
+               .where(resource_id: id, status: status)
                .group(:language_id, :resource_id)
   end
 end

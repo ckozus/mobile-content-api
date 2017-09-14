@@ -2,7 +2,7 @@
 
 class DraftsController < SecureController
   def index
-    render json: Translation.where(is_published: false), include: params[:include], status: :ok
+    render json: Translation.where(status: 0), include: params[:include], status: :ok
   end
 
   def show

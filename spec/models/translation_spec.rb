@@ -19,7 +19,7 @@ describe Translation do
   # rubocop:enable LineLength
 
   it 'cannot duplicate Resource, Translation, and version' do
-    t = described_class.find_or_create_by(resource_id: 1, language_id: 1, version: 1, is_published: false)
+    t = described_class.find_or_create_by(resource_id: 1, language_id: 1, version: 1, status: 0)
 
     expect(t).not_to be_valid
     expect(t.errors['version']).to include('has already been taken')
@@ -145,7 +145,7 @@ describe Translation do
       allow(Package).to receive(:new).and_return(package)
       allow(package).to receive(:push_to_s3)
 
-      translation.update(is_published: true)
+      translation.update(status: 2)
     end
 
     context 'translated name and description' do
@@ -156,7 +156,7 @@ describe Translation do
       end
 
       it 'updates from OneSky' do
-        translation.update!(is_published: true)
+        translation.update!(status: 2)
 
         expect(translation.translated_name).to eq('kgp german')
         expect(translation.translated_description).to eq('german description')
@@ -165,7 +165,7 @@ describe Translation do
       it 'translated name is updated prior to building zip' do # Package needs the translated name/description
         allow(translation).to receive(:translated_name=)
 
-        translation.update!(is_published: true)
+        translation.update!(status: 2)
 
         expect(translation).to have_received(:translated_name=).ordered
         expect(package).to have_received(:push_to_s3).ordered
@@ -174,7 +174,7 @@ describe Translation do
       it 'translated description is updated prior to building zip' do
         allow(translation).to receive(:translated_description=)
 
-        translation.update!(is_published: true)
+        translation.update!(status: 2)
 
         expect(translation).to have_received(:translated_description=).ordered
         expect(package).to have_received(:push_to_s3).ordered

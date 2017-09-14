@@ -36,7 +36,7 @@ class Translation < ActiveRecord::Base
   end
 
   def update_draft(params)
-    update!(params.permit(:is_published))
+    update!(params.permit(:status))
   end
 
   def object_name

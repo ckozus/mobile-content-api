@@ -9,7 +9,7 @@ class TranslationsController < ApplicationController
     id = params[:id]
     @translation = Translation.find(id)
 
-    if @translation.is_published
+    if @translation.published?
       redirect
     else
       raise Error::NotFoundError, "Translation with ID: #{id} not found. "\
@@ -20,7 +20,7 @@ class TranslationsController < ApplicationController
   private
 
   def all_translations
-    Translation.where(is_published: true)
+    Translation.where(status: 2)
   end
 
   def redirect
