@@ -87,7 +87,7 @@ resource 'Drafts' do
       let(:language_two) { 3 }
 
       before do
-        allow(resource).to receive(:create_draft)
+        allow(resource).to receive(:create_draft).exactly(2).times
 
         do_request data: {
           type: :translation, attributes: { resource_id: resource_id, language_ids: [language_one, language_two] }

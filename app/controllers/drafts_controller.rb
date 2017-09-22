@@ -11,10 +11,9 @@ class DraftsController < SecureController
 
   def create
     resource = load_resource
+    language_ids = [].push(data_attrs[:language_ids]).push(data_attrs[:language_id])
 
-    resource.create_draft(language_id) unless language_id.nil?
-
-    data_attrs[:language_ids]&.each do |language_id|
+    language_ids.compact.flatten.each do |language_id|
       resource.create_draft(language_id)
     end
 
@@ -34,10 +33,6 @@ class DraftsController < SecureController
 
   def load_resource
     Resource.find(data_attrs[:resource_id])
-  end
-
-  def language_id
-    data_attrs[:language_id]
   end
 
   def edit
