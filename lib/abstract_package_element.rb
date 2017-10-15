@@ -25,6 +25,8 @@ class AbstractPackageElement
     Rails.logger.info(message)
   end
 
+  def message; end
+
   def save_to_file; end
 
   def add_to_manifest; end
