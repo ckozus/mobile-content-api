@@ -40,6 +40,9 @@ describe AbstractPackageElement do
     before do
       allow(package).to receive(:zip_file).and_return(zip_file)
       allow(package).to receive(:directory).and_return(directory)
+
+      allow(package_element).to receive(:save_to_file)
+      allow(package_element).to receive(:add_to_manifest)
     end
 
     it 'adds to zip file' do
@@ -51,13 +54,16 @@ describe AbstractPackageElement do
       expect(zip_file).to have_received(:add).with(sha, "#{directory}/#{sha}")
     end
 
-    it 'saves to file, then adds to zip, then adds to manifest' do
-      allow(package_element).to receive(:save_to_file)
-      allow(package_element).to receive(:add_to_manifest)
-
+    it 'saves to file, then adds to zip' do
       package_element.add_to_package
 
       expect(package_element).to have_received(:save_to_file).ordered
+      expect(package.zip_file).to have_received(:add).ordered
+    end
+
+    it 'then adds to zip, then adds to manifest' do
+      package_element.add_to_package
+
       expect(package.zip_file).to have_received(:add).ordered
       expect(package_element).to have_received(:add_to_manifest).ordered
     end
