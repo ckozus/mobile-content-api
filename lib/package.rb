@@ -56,12 +56,16 @@ class Package
     Zip::File.open("#{@directory}/#{@translation.zip_name}", Zip::File::CREATE) do |zip_file|
       @zip_file = zip_file
 
-      @translation.resource.pages.order(position: :asc).each { |page| PagePackageElement.new(self, page) }
-      @translation.resource.attachments.where(is_zipped: true).each { |a| AttachmentPackageElement.new(self, a) }
+      add_content
 
       manifest_filename = write_manifest_to_file
       zip_file.add(manifest_filename, "#{@directory}/#{manifest_filename}")
     end
+  end
+
+  def add_content
+    @translation.resource.pages.order(position: :asc).each { |page| PagePackageElement.new(self, page) }
+    @translation.resource.attachments.where(is_zipped: true).each { |a| AttachmentPackageElement.new(self, a) }
   end
 
   def load_or_create_manifest_node

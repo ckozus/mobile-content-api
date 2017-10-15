@@ -11,6 +11,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    abstraction (0.0.4)
     actioncable (5.0.3)
       actionpack (= 5.0.3)
       nio4r (>= 1.2, < 3.0)
@@ -317,6 +318,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  abstraction
   active_model_serializers (= 0.10.5)
   aws-sdk
   aws-sdk-rails

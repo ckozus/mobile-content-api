@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'syslog-logger'
 
+gem 'abstraction'
 gem 'active_model_serializers', '= 0.10.5'
 gem 'aws-sdk'
 gem 'aws-sdk-rails'
