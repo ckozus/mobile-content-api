@@ -64,8 +64,13 @@ class Package
   end
 
   def add_content
-    @translation.resource.pages.order(position: :asc).each { |page| PagePackageElement.new(self, page) }
-    @translation.resource.attachments.where(is_zipped: true).each { |a| AttachmentPackageElement.new(self, a) }
+    @translation.resource.pages.order(position: :asc).each do |page|
+      PagePackageElement.new(self, page).add_to_package
+    end
+
+    @translation.resource.attachments.where(is_zipped: true).each do |a|
+      AttachmentPackageElement.new(self, a).add_to_package
+    end
   end
 
   def load_or_create_manifest_node

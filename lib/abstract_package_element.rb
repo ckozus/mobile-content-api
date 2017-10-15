@@ -8,8 +8,6 @@ class AbstractPackageElement
   def initialize(package, element)
     @element = element
     @package = package
-
-    add_to_package
   end
 
   def add_to_package
