@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class PackageElement
+class AttachmentPackageElement
   def initialize(package, attachment)
     @package = package
     @attachment = attachment
