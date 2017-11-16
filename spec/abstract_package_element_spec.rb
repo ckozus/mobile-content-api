@@ -3,8 +3,8 @@ require 'rails_helper'
 require 'abstract_package_element'
 
 describe AbstractPackageElement do
-  let(:element) { double }
-  let(:package) { double }
+  let(:element) { instance_double }
+  let(:package) { instance_double }
 
   before do
     allow(package).to receive(:directory)
@@ -30,7 +30,7 @@ describe AbstractPackageElement do
 
   context 'add to package' do
     let(:zip_file) do
-      d = double
+      d = instance_double
       allow(d).to receive(:add)
       d
     end
