@@ -18,9 +18,9 @@ gem "active_model_serializers", "0.10.10"
 gem "active_storage_validations"
 gem "aws-sdk-s3"
 gem "file_validators"
-gem "mini_magick", "~> 4.8"
+gem "mini_magick", "~> 4.10"
 gem "nokogiri", ">= 1.8.5"
-gem "oj", "~> 3.10.0"
+gem "oj", "~> 3.10.2"
 gem "rest-client", "~> 2.1.0"
 gem "rubyzip", ">= 1.2.2"
 gem "syslog-logger"
@@ -48,7 +48,7 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rspec", require: false
   gem "simplecov", require: false
-  gem "standard", "~> 0.1.6"
+  gem "standard", "~> 0.1.7"
   gem "webmock", require: false
 end
 
